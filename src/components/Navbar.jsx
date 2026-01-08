@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import "./Header.css";
 
 const Navbar = () => {
   const token = true;        // si está logueado o no
@@ -6,27 +8,39 @@ const Navbar = () => {
 
   return (
     <nav className="navbar navbar-dark bg-dark px-4">
-
-      <span className="navbar-brand">Pizzería Mamma Mia!</span>
+      <div className="brand">
+        <img src="/images/logo.svg" alt="Logo" className="logo" />
+        <Link to="/" className="navbar-brand brand-title" style={{ textDecoration: 'none', color: 'white', margin: 0 }}>
+          Pizzería Mamma Mia!
+        </Link>
+      </div>
 
       <div>
-        <button className="btn btn-outline-light me-2">🍕 Home</button>
+        <Link to="/" className="btn btn-outline-light me-2">
+          🍕 Home
+        </Link>
 
         {token ? (
           <>
-            <button className="btn btn-outline-light me-2">🔓 Profile</button>
+            <Link to="/profile" className="btn btn-outline-light me-2">
+              🔓 Profile
+            </Link>
             <button className="btn btn-outline-light me-2">🔒 Logout</button>
           </>
         ) : (
           <>
-            <button className="btn btn-outline-light me-2">🔐 Login</button>
-            <button className="btn btn-outline-light me-2">🔐 Register</button>
+            <Link to="/login" className="btn btn-outline-light me-2">
+              🔐 Login
+            </Link>
+            <Link to="/register" className="btn btn-outline-light me-2">
+              🔐 Register
+            </Link>
           </>
         )}
 
-        <button className="btn btn-success">
+        <Link to="/cart" className="btn btn-success">
           🛒 Total: ${total.toLocaleString()}
-        </button>
+        </Link>
       </div>
 
     </nav>

@@ -1,10 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./CardPizza.css";
 
-const CardPizza = ({ name, price, img, ingredients, coupon }) => {
+const CardPizza = ({ id, name, price, img, ingredients, coupon, hasLink }) => {
+  const imageElement = (
+    <img src={img} className="card-img-top" alt={name} style={hasLink ? { cursor: 'pointer' } : {}} />
+  );
+
   return (
     <div className="card m-3" style={{ width: "18rem" }}>
-      <img src={img} className="card-img-top" alt={name} />
+      {hasLink ? (
+        <Link to={`/pizza/${id}`}>
+          {imageElement}
+        </Link>
+      ) : (
+        imageElement
+      )}
 
       <div className="card-body">
         <h5 className="card-title text-capitalize">{name}</h5>
